@@ -1,6 +1,8 @@
 package com.neathorium.thorium.framework.core.selector.records;
 
-import selectorSpecificity.tuples.SpecificityData;
+import com.neathorium.selector.specificity.tuples.SpecificityData;
+import com.neathorium.thorium.java.extensions.namespaces.predicates.EqualsPredicates;
+import com.neathorium.thorium.java.extensions.namespaces.predicates.NullablePredicates;
 
 import java.util.Objects;
 
@@ -15,10 +17,18 @@ public class SelectorKeySpecificityData {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        var that = (SelectorKeySpecificityData) o;
-        return Objects.equals(selectorKey, that.selectorKey) && Objects.equals(specifics, that.specifics);
+        if (this == o) {
+            return true;
+        }
+        if (NullablePredicates.isNull(o) || EqualsPredicates.isNotEqual(getClass(), o.getClass())) {
+            return false;
+        }
+
+        final var that = (SelectorKeySpecificityData) o;
+        return (
+            EqualsPredicates.isEqual(selectorKey, that.selectorKey) &&
+            EqualsPredicates.isEqual(specifics, that.specifics)
+        );
     }
 
     @Override
@@ -28,6 +38,6 @@ public class SelectorKeySpecificityData {
 
     @Override
     public String toString() {
-        return "SelectorKeySpecificityData{selectorKey='" + selectorKey + "\', specifics=" + specifics + '}';
+        return ("SelectorKeySpecificityData{selectorKey='" + selectorKey + "\', specifics=" + specifics + '}');
     }
 }

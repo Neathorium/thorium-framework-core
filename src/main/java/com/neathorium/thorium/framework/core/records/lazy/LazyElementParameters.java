@@ -1,8 +1,8 @@
 package com.neathorium.thorium.framework.core.records.lazy;
 
-import com.neathorium.thorium.core.extensions.namespaces.CoreUtilities;
-import com.neathorium.thorium.core.extensions.namespaces.NullableFunctions;
-import com.neathorium.thorium.core.extensions.namespaces.predicates.BasicPredicates;
+import com.neathorium.thorium.java.extensions.namespaces.predicates.BasicPredicates;
+import com.neathorium.thorium.java.extensions.namespaces.predicates.EqualsPredicates;
+import com.neathorium.thorium.java.extensions.namespaces.predicates.NullablePredicates;
 
 import java.util.Objects;
 
@@ -19,19 +19,19 @@ public class LazyElementParameters<ListType> {
 
     @Override
     public boolean equals(Object o) {
-        if (CoreUtilities.isEqual(this, o)) {
+        if (this == o) {
             return true;
         }
 
-        if (NullableFunctions.isNull(o) || CoreUtilities.isNotEqual(getClass(), o.getClass())) {
+        if (NullablePredicates.isNull(o) || EqualsPredicates.isNotEqual(getClass(), o.getClass())) {
             return false;
         }
 
         final var that = (LazyElementParameters<?>) o;
         return (
             BasicPredicates.isZero(Double.compare(that.PROBABILITY, PROBABILITY)) &&
-            CoreUtilities.isEqual(LAZY_LOCATORS, that.LAZY_LOCATORS) &&
-            CoreUtilities.isEqual(GETTER, that.GETTER)
+            EqualsPredicates.isEqual(LAZY_LOCATORS, that.LAZY_LOCATORS) &&
+            EqualsPredicates.isEqual(GETTER, that.GETTER)
         );
     }
 

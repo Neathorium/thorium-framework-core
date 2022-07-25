@@ -1,9 +1,9 @@
 package com.neathorium.thorium.framework.core.abstracts.lazy.filtered;
 
+import com.neathorium.thorium.core.data.records.Data;
 import com.neathorium.thorium.framework.core.abstracts.element.finder.BaseFilterParameters;
-import com.neathorium.thorium.core.extensions.namespaces.CoreUtilities;
-import com.neathorium.thorium.core.extensions.namespaces.NullableFunctions;
-import com.neathorium.thorium.core.records.Data;
+import com.neathorium.thorium.java.extensions.namespaces.predicates.EqualsPredicates;
+import com.neathorium.thorium.java.extensions.namespaces.predicates.NullablePredicates;
 
 import java.util.Objects;
 import java.util.function.Function;
@@ -25,19 +25,19 @@ public abstract class BaseFilterData<DependencyType, GetterType, FilterType, Fil
 
     @Override
     public boolean equals(Object o) {
-        if (CoreUtilities.isEqual(this, o)) {
+        if (this == o) {
             return true;
         }
 
-        if (NullableFunctions.isNull(o) || CoreUtilities.isNotEqual(getClass(), o.getClass())) {
+        if (NullablePredicates.isNull(o) || EqualsPredicates.isNotEqual(getClass(), o.getClass())) {
             return false;
         }
 
         final var that = (BaseFilterData<?, ?, ?, ?, ?, ?>) o;
         return (
-            CoreUtilities.isEqual(isFiltered, that.isFiltered) &&
-            CoreUtilities.isEqual(handler, that.handler) &&
-            CoreUtilities.isEqual(filterParameter, that.filterParameter)
+            EqualsPredicates.isEqual(isFiltered, that.isFiltered) &&
+            EqualsPredicates.isEqual(handler, that.handler) &&
+            EqualsPredicates.isEqual(filterParameter, that.filterParameter)
         );
     }
 

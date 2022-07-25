@@ -1,9 +1,10 @@
 package com.neathorium.thorium.framework.core.abstracts.element.finder;
 
+import com.neathorium.thorium.core.data.records.Data;
 import com.neathorium.thorium.framework.core.namespaces.extensions.boilers.LazyLocatorList;
-import com.neathorium.thorium.core.extensions.namespaces.CoreUtilities;
-import com.neathorium.thorium.core.extensions.namespaces.NullableFunctions;
-import com.neathorium.thorium.core.records.Data;
+import com.neathorium.thorium.java.extensions.namespaces.predicates.EqualsPredicates;
+import com.neathorium.thorium.java.extensions.namespaces.predicates.NullablePredicates;
+
 
 import java.util.Map;
 import java.util.Objects;
@@ -11,46 +12,46 @@ import java.util.function.Function;
 
 
 public abstract class BaseFilterParameters<DependencyType, GetterType, ReturnType> {
-    public final LazyLocatorList locators;
-    public final Map<GetterType, Function<LazyLocatorList, Function<DependencyType, Data<ReturnType>>>> getterMap;
-    public final GetterType getter;
+    public final LazyLocatorList LOCATORS;
+    public final Map<GetterType, Function<LazyLocatorList, Function<DependencyType, Data<ReturnType>>>> GETTER_MAP;
+    public final GetterType GETTER;
 
     public BaseFilterParameters(LazyLocatorList locators, Map<GetterType, Function<LazyLocatorList, Function<DependencyType, Data<ReturnType>>>> getterMap, GetterType getter) {
-        this.locators = locators;
-        this.getterMap = getterMap;
-        this.getter = getter;
+        this.LOCATORS = locators;
+        this.GETTER_MAP = getterMap;
+        this.GETTER = getter;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (CoreUtilities.isEqual(this, o)) {
+        if (this == o) {
             return true;
         }
 
-        if (NullableFunctions.isNull(o) || CoreUtilities.isNotEqual(getClass(), o.getClass())) {
+        if (NullablePredicates.isNull(o) || EqualsPredicates.isNotEqual(getClass(), o.getClass())) {
             return false;
         }
 
         final var that = (BaseFilterParameters<?, ?, ?>) o;
         return (
-            CoreUtilities.isEqual(locators, that.locators) &&
-            CoreUtilities.isEqual(getterMap, that.getterMap) &&
-            CoreUtilities.isEqual(getter, that.getter)
+            EqualsPredicates.isEqual(LOCATORS, that.LOCATORS) &&
+            EqualsPredicates.isEqual(GETTER_MAP, that.GETTER_MAP) &&
+            EqualsPredicates.isEqual(GETTER, that.GETTER)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(locators, getterMap, getter);
+        return Objects.hash(LOCATORS, GETTER_MAP, GETTER);
     }
 
     @Override
     public String toString() {
         return (
             "BaseFilterParameters{" +
-            "locators=" + locators +
-            ", getterMap=" + getterMap +
-            ", getter=" + getter +
+            "LOCATORS=" + LOCATORS +
+            ", GETTER_MAP=" + GETTER_MAP +
+            ", GETTER=" + GETTER +
             '}'
         );
     }

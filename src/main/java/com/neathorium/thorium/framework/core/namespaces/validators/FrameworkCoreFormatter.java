@@ -1,5 +1,6 @@
 package com.neathorium.thorium.framework.core.namespaces.validators;
 
+import com.neathorium.thorium.core.data.records.Data;
 import com.neathorium.thorium.framework.core.abstracts.AbstractLazyResult;
 import com.neathorium.thorium.framework.core.abstracts.AbstractLazyElementWithOptionsData;
 import com.neathorium.thorium.framework.core.records.GetByFilterFormatterData;
@@ -8,14 +9,11 @@ import com.neathorium.thorium.framework.core.records.ProbabilityData;
 import com.neathorium.thorium.framework.core.records.lazy.ExternalSelectorData;
 import com.neathorium.thorium.framework.core.records.lazy.LazyLocator;
 import com.neathorium.thorium.core.constants.validators.CoreFormatterConstants;
-import com.neathorium.thorium.core.extensions.DecoratedList;
-import com.neathorium.thorium.core.extensions.interfaces.functional.TriFunction;
-import com.neathorium.thorium.core.extensions.namespaces.CoreUtilities;
 import com.neathorium.thorium.core.namespaces.validators.CoreFormatter;
-import com.neathorium.thorium.core.records.Data;
+import com.neathorium.thorium.java.extensions.classes.DecoratedList;
+import com.neathorium.thorium.java.extensions.interfaces.functional.TriFunction;
 
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -35,7 +33,7 @@ public interface FrameworkCoreFormatter {
     static String getInternalSelectorDataMessage(InternalSelectorData internalData) {
         var message = CoreFormatter.isNullMessageWithName(internalData, "Internal Data");
         if (isBlank(message)) {
-            message += CoreFormatter.getCommandAmountRangeErrorMessage(internalData.limit, internalData.range);
+            message += CoreFormatter.getCommandAmountRangeErrorMessage(internalData.LIMIT, internalData.RANGE);
         }
 
         return getNamedErrorMessageOrEmpty("getInternalSelectorDataMessage", message);
@@ -45,11 +43,11 @@ public interface FrameworkCoreFormatter {
         var message = CoreFormatter.isNullMessageWithName(object, "External Selector Data");
         if (isBlank(message)) {
             message += (
-                CoreFormatter.isNullMessageWithName(object.getSelector, "Selector getter function") +
-                CoreFormatter.isNullMessageWithName(object.preferredProperties, "Preferred properties ") +
-                CoreFormatter.isNullMessageWithName(object.selectorType, "Selector type") +
-                CoreFormatter.getCommandAmountRangeErrorMessage(object.limit, object.range) +
-                CoreFormatter.isNullMessageWithName(object.defaultSelector, "Default Selector value")
+                CoreFormatter.isNullMessageWithName(object.GET_SELECTOR, "Selector getter function") +
+                CoreFormatter.isNullMessageWithName(object.PREFERRED_PROPERTIES, "Preferred properties ") +
+                CoreFormatter.isNullMessageWithName(object.SELECTOR_TYPE, "Selector type") +
+                CoreFormatter.getCommandAmountRangeErrorMessage(object.LIMIT, object.RANGE) +
+                CoreFormatter.isNullMessageWithName(object.DEFAULT_SELECTOR, "Default Selector value")
             );
         }
         return getNamedErrorMessageOrEmpty("getExternalSelectorDataMessage", message);
@@ -82,13 +80,14 @@ public interface FrameworkCoreFormatter {
     static <T> String isNullLazyElementMessage(AbstractLazyResult<T> object) {
         var message = CoreFormatter.isNullMessageWithName(object, "Lazy Element");
         if (isBlank(message)) {
-            message += isNullLazyElementParametersMessage(object.name, object.parameters, object.validator);
+            message += isNullLazyElementParametersMessage(object.NAME, object.PARAMETERS, object.VALIDATOR);
         }
 
         return getNamedErrorMessageOrEmpty("isNullLazyElementMessage", message);
     }
 
-    static <T> String getAmountParameterErrorMessage(Data<T> sizable, TriFunction<Boolean, Integer, String, String> messageHandler, Predicate<Integer> condition) {
+    static <T> String getAmountParameterErrorMessage(Data<T> sizable,
+                                                     TriFunction<Boolean, Integer, String, String> messageHandler, Predicate<Integer> condition) {
         return getNamedErrorMessageOrEmpty("getAmountParameterErrorMessage", (
             CoreFormatter.isInvalidOrFalseMessage(sizable) +
             CoreFormatter.isNullMessageWithName(messageHandler, "Message Handler") +
@@ -108,7 +107,7 @@ public interface FrameworkCoreFormatter {
     static <T> String getLazyResultWithOptionsMessage(AbstractLazyElementWithOptionsData<?, ?, ?, ?> data, String nameof) {
         var message = CoreFormatter.isNullMessageWithName(data, "Data");
         if (isBlank(message)) {
-            message += getLazyResultWithExternalMessage(nameof, data.element, data.internalData, data.getOrder, data.probabilityData);
+            message += getLazyResultWithExternalMessage(nameof, data.ELEMENT, data.INTERNAL_DATA, data.GET_ORDER, data.PROBABILITY_DATA);
         }
 
         return getNamedErrorMessageOrEmpty("getLazyResultWithOptionsMessage", message);
@@ -152,10 +151,6 @@ public interface FrameworkCoreFormatter {
         return getNamedErrorMessageOrEmpty("isInvalidLazyLocatorMessage", message);
     }
 
-    static String getUniqueGeneratedName(String name, AtomicInteger count) {
-        return name + "-" + CoreUtilities.getIncrementalUUID(count) + "-generated";
-    }
-
     static String getProbabilityAdjustmentMessage(String key, double original, double adjusted, boolean increase, boolean generated, boolean belowThreshold) {
         var message = (increase ? "Increased" : "Reduced") + " probability of selector(\"" + original + "\") to \"" + adjusted + "\"" + CoreFormatterConstants.END_LINE;
         if (belowThreshold) {
@@ -164,8 +159,6 @@ public interface FrameworkCoreFormatter {
 
         return message;
     }
-
-
 
     static <T> String getInvalidGetByFilterFormatterDataMessage(GetByFilterFormatterData<T> data) {
         var message = CoreFormatter.isNullMessageWithName(data, "Get By filter data");

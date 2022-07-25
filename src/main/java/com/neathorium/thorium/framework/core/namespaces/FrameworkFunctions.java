@@ -1,14 +1,15 @@
 package com.neathorium.thorium.framework.core.namespaces;
 
+import com.neathorium.thorium.core.data.constants.CoreDataConstants;
+import com.neathorium.thorium.core.data.namespaces.factories.DataFactoryFunctions;
+import com.neathorium.thorium.core.data.records.Data;
 import com.neathorium.thorium.framework.core.namespaces.validators.FrameworkCoreFormatter;
-import com.neathorium.thorium.core.constants.CoreDataConstants;
-import com.neathorium.thorium.core.extensions.DecoratedList;
-import com.neathorium.thorium.core.extensions.boilers.StringSet;
-import com.neathorium.thorium.core.extensions.interfaces.ISizable;
-import com.neathorium.thorium.core.extensions.interfaces.functional.TriFunction;
-import com.neathorium.thorium.core.extensions.namespaces.predicates.BasicPredicates;
-import com.neathorium.thorium.core.namespaces.DataFactoryFunctions;
-import com.neathorium.thorium.core.records.Data;
+import com.neathorium.thorium.java.extensions.classes.DecoratedList;
+import com.neathorium.thorium.java.extensions.classes.boilers.StringSet;
+import com.neathorium.thorium.java.extensions.interfaces.ISizable;
+import com.neathorium.thorium.java.extensions.interfaces.functional.TriFunction;
+import com.neathorium.thorium.java.extensions.namespaces.predicates.BasicPredicates;
+
 
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -29,7 +30,7 @@ public interface FrameworkFunctions {
             return DataFactoryFunctions.replaceName(CoreDataConstants.NULL_INTEGER, localNameof);
         }
 
-        final var size = sizable.object.size();
+        final var size = sizable.OBJECT().size();
         final var status = condition.test(size);
         return DataFactoryFunctions.getWith(size, status, nameof, messageHandler.apply(status, size, elementName));
     }

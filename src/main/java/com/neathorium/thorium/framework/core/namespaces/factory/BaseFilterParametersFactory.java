@@ -1,9 +1,9 @@
 package com.neathorium.thorium.framework.core.namespaces.factory;
 
+import com.neathorium.thorium.core.data.records.Data;
 import com.neathorium.thorium.framework.core.namespaces.extensions.boilers.LazyLocatorList;
 import com.neathorium.thorium.framework.core.abstracts.element.finder.BaseFilterParameters;
-import com.neathorium.thorium.core.extensions.interfaces.functional.TriFunction;
-import com.neathorium.thorium.core.records.Data;
+import com.neathorium.thorium.java.extensions.interfaces.functional.TriFunction;
 
 import java.util.Map;
 import java.util.function.Function;
@@ -11,7 +11,7 @@ import java.util.function.Function;
 public interface BaseFilterParametersFactory {
     static <DependencyType, GetterType, ReturnType, ConstructedType extends BaseFilterParameters<DependencyType, GetterType, ReturnType>> ConstructedType getWith(
         TriFunction<
-                LazyLocatorList,
+            LazyLocatorList,
             Map<GetterType, Function<LazyLocatorList, Function<DependencyType, Data<ReturnType>>>>,
             GetterType,
             ConstructedType
