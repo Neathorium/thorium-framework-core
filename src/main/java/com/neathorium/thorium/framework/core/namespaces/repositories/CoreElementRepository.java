@@ -1,8 +1,8 @@
 package com.neathorium.thorium.framework.core.namespaces.repositories;
 
 import com.neathorium.thorium.framework.core.selector.records.SelectorKeySpecificityData;
-import com.neathorium.thorium.core.extensions.DecoratedList;
-import com.neathorium.thorium.core.extensions.namespaces.factories.DecoratedListFactory;
+import com.neathorium.thorium.java.extensions.classes.DecoratedList;
+import com.neathorium.thorium.java.extensions.namespaces.factories.DecoratedListFactory;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;

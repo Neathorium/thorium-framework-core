@@ -2,8 +2,9 @@ package com.neathorium.thorium.framework.core.records.lazy;
 
 import com.neathorium.thorium.framework.core.abstracts.AbstractLazyResult;
 import com.neathorium.thorium.framework.core.selector.records.SelectorKeySpecificityData;
-import com.neathorium.thorium.core.extensions.DecoratedList;
-import com.neathorium.thorium.core.extensions.namespaces.NullableFunctions;
+import com.neathorium.thorium.java.extensions.classes.DecoratedList;
+import com.neathorium.thorium.java.extensions.namespaces.predicates.EqualsPredicates;
+import com.neathorium.thorium.java.extensions.namespaces.predicates.NullablePredicates;
 
 import java.util.Map;
 import java.util.Objects;
@@ -23,14 +24,14 @@ public class CachedLazyData<T, U extends AbstractLazyResult<T>> {
             return true;
         }
 
-        if (NullableFunctions.isNull(o) || (getClass() != o.getClass())) {
+        if (NullablePredicates.isNull(o) || EqualsPredicates.isNotEqual(getClass(), o.getClass())) {
             return false;
         }
 
         final var that = (CachedLazyData<?, ?>) o;
         return (
-            Objects.equals(element, that.element) &&
-            Objects.equals(typeKeys, that.typeKeys)
+            EqualsPredicates.isEqual(element, that.element) &&
+            EqualsPredicates.isEqual(typeKeys, that.typeKeys)
         );
     }
 

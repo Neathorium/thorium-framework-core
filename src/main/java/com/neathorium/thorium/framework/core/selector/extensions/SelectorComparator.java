@@ -1,11 +1,11 @@
 package com.neathorium.thorium.framework.core.selector.extensions;
 
+import com.neathorium.selector.specificity.tuples.SpecificityData;
 import com.neathorium.thorium.framework.core.selector.constants.SelectorComparatorConstants;
-import selectorSpecificity.tuples.SpecificityData;
 
 import java.util.Objects;
 
-import static selectorSpecificity.Specificity.getSpecificityValuesInOrder;
+import static com.neathorium.selector.specificity.namespaces.Specificity.getSpecificityValuesInOrder;
 
 public interface SelectorComparator {
     static SpecificityData better(SpecificityData left, SpecificityData right) {

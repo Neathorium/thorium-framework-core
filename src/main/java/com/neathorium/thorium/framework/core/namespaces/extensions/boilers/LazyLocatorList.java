@@ -2,7 +2,7 @@ package com.neathorium.thorium.framework.core.namespaces.extensions.boilers;
 
 
 import com.neathorium.thorium.framework.core.records.lazy.LazyLocator;
-import com.neathorium.thorium.core.extensions.DecoratedList;
+import com.neathorium.thorium.java.extensions.classes.DecoratedList;
 
 import java.util.List;
 

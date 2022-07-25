@@ -4,10 +4,10 @@ import com.neathorium.thorium.framework.core.constants.lazy.LazyLocatorConstants
 import com.neathorium.thorium.framework.core.namespaces.extensions.boilers.LazyLocatorList;
 import com.neathorium.thorium.framework.core.records.lazy.LazyLocator;
 import com.neathorium.thorium.framework.core.selector.records.SelectorKeySpecificityData;
-import com.neathorium.thorium.core.extensions.DecoratedList;
-import com.neathorium.thorium.core.extensions.namespaces.CoreUtilities;
-import com.neathorium.thorium.core.extensions.namespaces.EmptiableFunctions;
-import com.neathorium.thorium.core.extensions.namespaces.factories.DecoratedListFactory;
+import com.neathorium.thorium.java.extensions.classes.DecoratedList;
+import com.neathorium.thorium.java.extensions.namespaces.factories.DecoratedListFactory;
+import com.neathorium.thorium.java.extensions.namespaces.predicates.EmptiablePredicates;
+import com.neathorium.thorium.java.extensions.namespaces.predicates.GuardPredicates;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -26,11 +26,11 @@ public interface FrameworkCoreUtilities {
     }
 
     static boolean areNullLazyLocator(Function<LazyLocator, String> locatorValidator, LazyLocator... data) {
-        return CoreUtilities.areAll(locatorValidator, data);
+        return GuardPredicates.areAll(locatorValidator, data);
     }
 
     static boolean areNullLazyLocator(LazyLocator... data) {
-        return CoreUtilities.areAll(FrameworkCoreUtilities::isNullLazyLocator, data);
+        return GuardPredicates.areAll(FrameworkCoreUtilities::isNullLazyLocator, data);
     }
 
     static boolean areNullLazyLocator(List<LazyLocator> data) {
@@ -38,7 +38,7 @@ public interface FrameworkCoreUtilities {
     }
 
     static boolean isInvalidLazyLocatorList(LazyLocatorList list) {
-        return EmptiableFunctions.isNullOrEmpty(list) || areNullLazyLocator(list.list);
+        return EmptiablePredicates.isNullOrEmpty(list) || areNullLazyLocator(list.list);
     }
 
     static boolean isNotNullLazyData(LazyLocator data) {

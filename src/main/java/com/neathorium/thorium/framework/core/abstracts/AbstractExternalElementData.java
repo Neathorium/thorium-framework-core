@@ -1,10 +1,11 @@
 package com.neathorium.thorium.framework.core.abstracts;
 
-import com.neathorium.thorium.core.extensions.DecoratedList;
+import com.neathorium.thorium.core.data.records.Data;
 import com.neathorium.thorium.framework.core.selector.records.SelectorKeySpecificityData;
-import com.neathorium.thorium.core.extensions.namespaces.CoreUtilities;
-import com.neathorium.thorium.core.extensions.namespaces.NullableFunctions;
-import com.neathorium.thorium.core.records.Data;
+
+import com.neathorium.thorium.java.extensions.classes.DecoratedList;
+import com.neathorium.thorium.java.extensions.namespaces.predicates.EqualsPredicates;
+import com.neathorium.thorium.java.extensions.namespaces.predicates.NullablePredicates;
 
 import java.util.Map;
 import java.util.Objects;
@@ -24,14 +25,14 @@ public abstract class AbstractExternalElementData<T> {
             return true;
         }
 
-        if (NullableFunctions.isNull(o) || CoreUtilities.isNotEqual(getClass(), o.getClass())) {
+        if (NullablePredicates.isNull(o) || EqualsPredicates.isNotEqual(getClass(), o.getClass())) {
             return false;
         }
 
         final var that = (AbstractExternalElementData<?>) o;
         return (
-            CoreUtilities.isEqual(TYPE_KEYS, that.TYPE_KEYS) &&
-            CoreUtilities.isEqual(FOUND, that.FOUND)
+            EqualsPredicates.isEqual(TYPE_KEYS, that.TYPE_KEYS) &&
+            EqualsPredicates.isEqual(FOUND, that.FOUND)
         );
     }
 

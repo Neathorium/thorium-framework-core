@@ -2,7 +2,7 @@ package com.neathorium.thorium.framework.core.namespaces.factory;
 
 import com.neathorium.thorium.framework.core.namespaces.validators.FrameworkCoreFormatter;
 import com.neathorium.thorium.framework.core.records.GetAmountData;
-import com.neathorium.thorium.core.extensions.interfaces.functional.TriFunction;
+import com.neathorium.thorium.java.extensions.interfaces.functional.TriFunction;
 
 import java.util.function.Predicate;
 

@@ -1,8 +1,9 @@
 package com.neathorium.thorium.framework.core.abstracts.lazy.filtered;
 
 import com.neathorium.thorium.framework.core.records.lazy.LazyElementParameters;
-import com.neathorium.thorium.core.extensions.namespaces.CoreUtilities;
-import com.neathorium.thorium.core.extensions.namespaces.NullableFunctions;
+import com.neathorium.thorium.java.extensions.namespaces.predicates.EqualsPredicates;
+import com.neathorium.thorium.java.extensions.namespaces.predicates.NullablePredicates;
+import com.neathorium.thorium.java.extensions.namespaces.utilities.BooleanUtilities;
 
 import java.util.Objects;
 
@@ -24,18 +25,18 @@ public abstract class AbstractLazyFilteredElementParameters<DependencyType, Gett
 
     @Override
     public boolean equals(Object o) {
-        if (CoreUtilities.isEqual(this, o)) {
+        if (this == o) {
             return true;
         }
 
-        if (NullableFunctions.isNull(o) || CoreUtilities.isNotEqual(getClass(), o.getClass()) || CoreUtilities.isFalse(super.equals(o))) {
+        if (NullablePredicates.isNull(o) || EqualsPredicates.isNotEqual(getClass(), o.getClass()) || BooleanUtilities.isFalse(super.equals(o))) {
             return false;
         }
 
         final var that = (AbstractLazyFilteredElementParameters<?, ?, ?, ?, ?, ?>) o;
         return (
-            CoreUtilities.isEqual(ELEMENT_FILTER_DATA, that.ELEMENT_FILTER_DATA) &&
-            CoreUtilities.isEqual(CLAZZ, that.CLAZZ)
+            EqualsPredicates.isEqual(ELEMENT_FILTER_DATA, that.ELEMENT_FILTER_DATA) &&
+            EqualsPredicates.isEqual(CLAZZ, that.CLAZZ)
         );
     }
 

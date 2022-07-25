@@ -1,13 +1,13 @@
 package com.neathorium.thorium.framework.core.namespaces;
 
+import com.neathorium.thorium.core.data.namespaces.factories.DataFactoryFunctions;
+import com.neathorium.thorium.core.data.records.Data;
 import com.neathorium.thorium.framework.core.abstracts.lazy.filtered.AbstractLazyFilteredElementParameters;
 import com.neathorium.thorium.framework.core.namespaces.validators.FrameworkCoreFormatter;
 import com.neathorium.thorium.framework.core.selector.records.SelectorKeySpecificityData;
 import com.neathorium.thorium.framework.core.constants.AdjusterConstants;
 import com.neathorium.thorium.framework.core.records.ProbabilityData;
-import com.neathorium.thorium.core.extensions.DecoratedList;
-import com.neathorium.thorium.core.namespaces.DataFactoryFunctions;
-import com.neathorium.thorium.core.records.Data;
+import com.neathorium.thorium.java.extensions.classes.DecoratedList;
 
 import java.util.Map;
 
