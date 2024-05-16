@@ -21,8 +21,8 @@ public class InternalSelectorDataTests {
     void factoryGetWithDefaultsTest() {
         final var data = InternalSelectorDataFactory.getWithDefaults();
         Assertions.assertTrue(
-            Objects.equals(data.LIMIT, CommandRangeDataConstants.MINIMUM_COMMAND_LIMIT) &&
-            Objects.equals(data.RANGE, CommandRangeDataConstants.DEFAULT_RANGE),
+            Objects.equals(data.LIMIT(), CommandRangeDataConstants.MINIMUM_COMMAND_LIMIT) &&
+            Objects.equals(data.RANGE(), CommandRangeDataConstants.DEFAULT_RANGE),
             "The defaults of the Factory weren't matching the expected defaults."
         );
     }

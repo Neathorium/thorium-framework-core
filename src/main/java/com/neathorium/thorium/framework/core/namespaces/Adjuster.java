@@ -20,11 +20,11 @@ public interface Adjuster {
         ProbabilityData data
     ) {
         final var originalProbability = parameters.PROBABILITY;
-        final var step = data.step;
+        final var step = data.STEP();
         parameters.PROBABILITY += increase ? +step : -step;
 
         final var probability = parameters.PROBABILITY;
-        final var status = probability > data.threshold;
+        final var status = probability > data.THRESHOLD();
         if (!status) {
             parameters.PROBABILITY = 0.0;
         }

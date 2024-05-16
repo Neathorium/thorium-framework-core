@@ -33,7 +33,7 @@ public interface FrameworkCoreFormatter {
     static String getInternalSelectorDataMessage(InternalSelectorData internalData) {
         var message = CoreFormatter.isNullMessageWithName(internalData, "Internal Data");
         if (isBlank(message)) {
-            message += CoreFormatter.getCommandAmountRangeErrorMessage(internalData.LIMIT, internalData.RANGE);
+            message += CoreFormatter.getCommandAmountRangeErrorMessage(internalData.LIMIT(), internalData.RANGE());
         }
 
         return getNamedErrorMessageOrEmpty("getInternalSelectorDataMessage", message);
@@ -86,8 +86,11 @@ public interface FrameworkCoreFormatter {
         return getNamedErrorMessageOrEmpty("isNullLazyElementMessage", message);
     }
 
-    static <T> String getAmountParameterErrorMessage(Data<T> sizable,
-                                                     TriFunction<Boolean, Integer, String, String> messageHandler, Predicate<Integer> condition) {
+    static <T> String getAmountParameterErrorMessage(
+        Data<T> sizable,
+        TriFunction<Boolean, Integer, String, String> messageHandler,
+        Predicate<Integer> condition
+    ) {
         return getNamedErrorMessageOrEmpty("getAmountParameterErrorMessage", (
             CoreFormatter.isInvalidOrFalseMessage(sizable) +
             CoreFormatter.isNullMessageWithName(messageHandler, "Message Handler") +
@@ -164,11 +167,11 @@ public interface FrameworkCoreFormatter {
         var message = CoreFormatter.isNullMessageWithName(data, "Get By filter data");
         if (isBlank(message)) {
             message += (
-                CoreFormatter.isMoreThanExpectedMessage(data.listSize, -1, "List size") +
-                CoreFormatter.isBlankMessageWithName(data.filterName, "Filter name") +
-                CoreFormatter.isBlankMessageWithName(data.message, "Message") +
-                CoreFormatter.isNullMessageWithName(data.filter, "Filter") +
-                CoreFormatter.isNullMessage(data.status)
+                CoreFormatter.isMoreThanExpectedMessage(data.LIST_SIZE(), -1, "List size") +
+                CoreFormatter.isBlankMessageWithName(data.FILTER_NAME(), "Filter name") +
+                CoreFormatter.isBlankMessageWithName(data.MESSAGE(), "Message") +
+                CoreFormatter.isNullMessageWithName(data.FILTER(), "Filter") +
+                CoreFormatter.isNullMessage(data.STATUS())
             );
         }
 
@@ -178,7 +181,7 @@ public interface FrameworkCoreFormatter {
     static <T> String getByFilterMessage(GetByFilterFormatterData<T> data) {
         var message = getInvalidGetByFilterFormatterDataMessage(data);
         return isBlank(message) ? (
-            data.filterName + " was" + (data.status ? "" : "n't") + " found by " + data.filterName + "(\"" + data.filter + "\"), list size: " + data.listSize + CoreFormatterConstants.END_LINE + message
+            data.FILTER_NAME() + " was" + (data.STATUS() ? "" : "n't") + " found by " + data.FILTER_NAME() + "(\"" + data.FILTER() + "\"), list size: " + data.LIST_SIZE() + CoreFormatterConstants.END_LINE + message
         ) : message;
     }
 }
