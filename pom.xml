@@ -10,13 +10,13 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
         <!--Dependency Versions-->
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <eclipse-collections.version>10.2.0</eclipse-collections.version>
         <commons.io.version>2.9.0</commons.io.version>
         <selector.specificity.version>9018f2bcf59f3b76578100c4d0c7ef98e674b5c5</selector.specificity.version>
-        <thorium-core.version>9ab743181d16daccfed6d529a28b83ab465219e3</thorium-core.version>
+        <thorium-core.version>1b8c555f5ba1f98fd5d00f078a6f9016d0df3306</thorium-core.version>
         <jackson.version>[2.12.6.1,)</jackson.version>
         <junit.jupiter.version>5.7.0</junit.jupiter.version>
     </properties>
