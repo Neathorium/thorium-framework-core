@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
-public class GetByFilterFormatterDataTests {
+class GetByFilterFormatterDataTests {
     @DisplayName("Get By filter formatter data valid")
     @Test
     void isValidGetByFilterDataTest() {
